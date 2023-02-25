@@ -111,6 +111,7 @@ export class AddPropertyComponent implements OnInit {
     this.property.gated = this.gated.value;
     this.property.date = new Date().toString();
     this.property.floor = this.floor.value;
+    this.property.desc = this.desc.value;
   }
 
   get basicInfo() {

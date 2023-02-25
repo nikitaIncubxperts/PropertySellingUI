@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="heading">
-                                <strong>Project Name</strong>
+                                <strong>Name</strong>
                                 <p>{{property.name}}</p>
                             </div>
 
@@ -50,7 +50,7 @@
 
                             <div class="heading">
                                 <strong>Age of Property</strong>
-                                <p>{{property.age}}</p>
+                                <p>{{property.age}} year</p>
                             </div>
 
                             <div class="heading">
@@ -58,26 +58,29 @@
                                 <p>{{property.date | date}}</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="heading">
-                            <strong>Main Entrance</strong>
-                            <p>{{property.entrance}}</p>
-                        </div>
+                        <div class="col-sm-6">
+                            <div class="heading">
+                                <strong>Main Entrance</strong>
+                                <p *ngIf="property.entrance=='1'">East</p>
+                                <p *ngIf="property.entrance=='2'">West</p>
+                                <p *ngIf="property.entrance=='3'">North</p>
+                                <p *ngIf="property.entrance=='4'">South</p>
+                            </div>
 
-                        <div class="heading">
-                            <strong>Gated Community</strong>
-                            <p *ngIf="property.gated">Yes</p>
-                            <p *ngIf="!property.gated">No</p>
-                        </div>
+                            <div class="heading">
+                                <strong>Gated Community</strong>
+                                <p *ngIf="property.gated">Yes</p>
+                                <p *ngIf="!property.gated">No</p>
+                            </div>
 
-                        <div class="heading">
-                            <strong>Security Deposit</strong>
-                            <p>{{property.security}}</p>
-                        </div>
-                        <div class="heading">
-                            <strong>Maintenance</strong>
-                            <p>{{property.maintenance}}</p>
+                            <div class="heading">
+                                <strong>Security Deposit</strong>
+                                <p>{{property.security}}</p>
+                            </div>
+                            <div class="heading">
+                                <strong>Maintenance</strong>
+                                <p>{{property.maintenance}}</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-sm-12">
@@ -86,11 +89,23 @@
                             <p>{{property.desc}}</p>
                         </div>
                     </div>
-        </tab>
-        <tab heading="Address"></tab>
-        <tab heading="Photos"></tab>
-        <tab heading="Contact"></tab>
-        </tabset>
+                </tab>
+                <tab heading="Address">
+                    <div class="col-sm-12">
+                        <h1>Address</h1>
+                        <div class="heading">
+                            <strong>{{property.addr}}</strong><br/>
+                            <strong>{{property.city}}</strong>
+                        </div>
+                    </div>
+                </tab>
+                <tab heading="Photos">
+                    Photos
+                </tab>
+                <tab heading="Contact">
+                    Contact Detail
+                </tab>
+            </tabset>
+        </div>
     </div>
-</div>
 </div>

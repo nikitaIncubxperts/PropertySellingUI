@@ -16,18 +16,19 @@ import { UserRegisterComponent } from './user/user-register/user-register.compon
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserServiceService } from './Services/user-service.service';
 import { AuthService } from './Services/auth.service';
-import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsetConfig, TabsModule } from 'ngx-bootstrap/tabs';
-import {ButtonsModule} from 'ngx-bootstrap/buttons';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { PropertyDetailResolverService } from './property/property-detail/property-detail-resolver.service';
 
 
 const appRouts: Routes = [
   { path: '', component: PropertyListComponent },
   { path: 'rent-property', component: PropertyListComponent },
   { path: 'add-property', component: AddPropertyComponent },
-  { path: 'property-detail/:id', component: PropertyDetailComponent },
+  { path: 'property-detail/:id', component: PropertyDetailComponent, resolve: { prp: PropertyDetailResolverService } },
   { path: 'user/login', component: UserLoginComponent },
   { path: 'user/register', component: UserRegisterComponent },
   { path: '**', component: PageNotFoundComponent }
@@ -49,7 +50,8 @@ const appRouts: Routes = [
     HousingService,
     UserServiceService,
     AuthService,
-    TabsetConfig
+    TabsetConfig,
+    PropertyDetailResolverService
   ],
   bootstrap: [AppComponent],
   imports: [
