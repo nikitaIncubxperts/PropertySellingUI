@@ -1,0 +1,271 @@
+<div class="card" style="margin-top: 5%;">
+    <div class="card-header">Add New Property</div>
+    <div class="card-body">
+
+        <form (ngSubmit)='onSubmit()' [formGroup]="addPropertyForm">
+            <!-- Heading -->
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-BasicInfo-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-BasicInfo" type="button" role="tab" aria-controls="nav-BasicInfo"
+                        aria-selected="true">Basic Info</button>
+                    <button class="nav-link" id="nav-PricingArea-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-PricingArea" type="button" role="tab" aria-controls="nav-PricingArea"
+                        aria-selected="false">Pricing and
+                        Area</button>
+                    <button class="nav-link" id="nav-Address-tab" data-bs-toggle="tab" data-bs-target="#nav-Address"
+                        type="button" role="tab" aria-controls="nav-Address" aria-selected="false">Address</button>
+                    <button class="nav-link" id="nav-OtherDetails-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-OtherDetails" type="button" role="tab" aria-controls="nav-OtherDetails"
+                        aria-selected="false">Other Details</button>
+                    <button class="nav-link" id="nav-Photos-tab" data-bs-toggle="tab" data-bs-target="#nav-Photos"
+                        type="button" role="tab" aria-controls="nav-Photos" aria-selected="false">Photos</button>
+                </div>
+            </nav>
+
+            <!-- Tabs Content -->
+            <div class="tab-content" id="nav-tabContent" #formtabs>
+                <!-- 1st -->
+                <div class="tab-pane fade show active" formGroupName="basicInfo" id="nav-BasicInfo" role="tabpanel"
+                    aria-labelledby="nav-BasicInfo-tab">
+                    <div class="form-group col-12">
+                        <p>I want to</p>
+                        <div class="btn-group" btnRadioGroup formControlName="sellRent" required>
+                            <label class="btn btn-outline-primary" tabindex="0" style="margin-right: 5px;" btnRadio=1
+                                role="button" name="sellRent">Sell</label>
+                            <label class="btn btn-outline-primary" btnRadio=2 role="button" name="sellRent">Rent</label>
+                        </div>
+                        <span *ngIf="sellRent.invalid && (sellRent.dirty || sellRent.touched)"
+                            class="error-block">Please select sell or rent
+                        </span>
+                    </div>
+                    <div class="form-group col-12">
+                        <p>BHK</p>
+                        <div class="btn-group" btnRadioGroup formControlName="bhk">
+                            <label *ngFor="let bhk of ['1','2','3','4']" class="btn btn-outline-primary"
+                                [btnRadio]="bhk" style="margin-right: 5px;" tabindex="0" role="button"
+                                name="SellRent">{{bhk}}</label>
+                        </div>
+                        <span *ngIf="bhk.invalid && (bhk.dirty || bhk.touched)" class="error-block">Please select BHK
+                        </span>
+                    </div>
+                    <div class="form-group col-12">
+                        <p>Property Type</p>
+                        <div class="btn-group" btnRadioGroup formControlName='propType'>
+                            <label *ngFor="let prop of PropertyType;" class="btn btn-outline-primary" [btnRadio]="prop"
+                                style="margin-right: 5px;" tabindex="0" role="button" name="SellRent">{{prop}}</label>
+                        </div>
+                        <span *ngIf="propType.invalid && (propType.dirty || propType.touched)"
+                            class="error-block">Please select property type
+                        </span>
+                    </div>
+                    <div class="form-group col-12">
+                        <p>Furnish Type</p>
+                        <div class="btn-group" btnRadioGroup formControlName="fType">
+                            <label *ngFor="let furnish of FurnishedType;" class="btn btn-outline-primary"
+                                [btnRadio]="furnish" style="margin-right: 5px;" tabindex="0" role="button"
+                                name="SellRent">{{furnish}}</label>
+                        </div>
+                        <span *ngIf="fType.invalid && (fType.dirty || fType.touched)" class="error-block">Please select
+                            furnished type
+                        </span>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="name">in Building/Society/Project</label>
+                        <input type="text" class="form-control" formControlName="name" tabindex="0" required>
+                    </div>
+                    <span *ngIf="name.invalid && (name.dirty || name.touched)" class="error-block">Please enter
+                        Building/Society/Project
+                    </span>
+                    <div class="form-group col-12">
+                        <label for="type">City</label>
+                        <input type="text" class="form-control" formControlName="city" tabindex="0" required>
+                    </div>
+                    <span *ngIf="city.invalid && (city.dirty || city.touched)" class="error-block">Please
+                        enter city
+                    </span>
+                    <button type="button" data-bs-toggle="tab" data-bs-target="#nav-PricingArea"
+                        style="margin-top: 10px;" class="btn btn-primary btn-large w-100">Next</button>
+                    <!-- [disabled]="basicInfo.invalid" -->
+                </div>
+
+                <!-- 2nd -->
+                <div class="tab-pane fade" id="nav-PricingArea" formGroupName="pricingArea" tabindex="1" role="tabpanel"
+                    aria-labelledby="nav-PricingArea-tab">
+                    <div class="form-group col-12">
+                        <label>Price (in USD)</label>
+                        <input type="text" class="form-control" tabindex="1" formControlName="price">
+                    </div>
+                    <span *ngIf="price.invalid && (price.dirty || price.touched)" class="error-block">Please enter Price
+                        (in USD)
+                    </span>
+                    <div class="form-group col-12">
+                        <label>Security (in USD)</label>
+                        <input type="text" class="form-control" tabindex="1" formControlName="security">
+                    </div>
+                    <span *ngIf="security.invalid && (security.dirty || security.touched)" class="error-block">Please
+                        enter Security (in USD)
+                    </span>
+                    <div class="form-group col-12">
+                        <label>Maintenance (in USD)</label>
+                        <input type="text" class="form-control" tabindex="1" formControlName="maintenance">
+                    </div>
+                    <span *ngIf="maintenance.invalid && (maintenance.dirty || maintenance.touched)"
+                        class="error-block">Please enter Maintenance (in USD)
+                    </span>
+                    <div class="form-group col-12">
+                        <label>Built Area (in Sqr Feet)</label>
+                        <input type="text" class="form-control" tabindex="1" formControlName="builtArea">
+                    </div>
+                    <span *ngIf="builtArea.invalid && (builtArea.dirty || builtArea.touched)" class="error-block">Please
+                        enter Built Area (in Sqr Feet)
+                    </span>
+                    <div class="form-group col-12">
+                        <label>Carpet Area(in Sqr Feet)</label>
+                        <input type="text" class="form-control" tabindex="1" formControlName="carpetArea">
+                    </div>
+                    <span *ngIf="carpetArea.invalid && (carpetArea.dirty || carpetArea.touched)"
+                        class="error-block">Please enter Carpet Area(in Sqr Feet)
+                    </span>
+                    <button type="button" style="margin-top: 10px;"
+                        class="btn btn-primary btn-large w-100">Back</button>
+                    <button type="button" style="margin-top: 10px;"
+                        class="btn btn-primary btn-large w-100">Next</button>
+                    <!-- [disabled]="pricingArea.invalid"  -->
+                </div>
+
+                <!-- 3rd -->
+                <div class="tab-pane fade" id="nav-Address" formGroupName="address" role="tabpanel"
+                    aria-labelledby="nav-Address-tab">
+                    <div class="form-group col-12">
+                        <label>Floor</label>
+                        <input type="text" class="form-control" formControlName="floor">
+                    </div>
+                    <span *ngIf="floor.invalid && (floor.dirty || floor.touched)" class="error-block">Please enter floor
+                        number
+                    </span>
+
+                    <div class="form-group col-12">
+                        <label>Total Floor</label>
+                        <input type="text" class="form-control" formControlName="totalFloor">
+                    </div>
+                    <span *ngIf="totalFloor.invalid && (totalFloor.dirty || totalFloor.touched)"
+                        class="error-block">Please enter total floors
+                    </span>
+
+                    <div class="form-group col-12">
+                        <label>Address</label>
+                        <input type="text" class="form-control" formControlName="addr">
+                    </div>
+                    <span *ngIf="addr.invalid && (addr.dirty || addr.touched)" class="error-block">Please enter
+                        Address
+                    </span>
+
+                    <div class="form-group col-12">
+                        <label>Landmark</label>
+                        <input type="text" class="form-control" formControlName="landmark">
+                    </div>
+                    <span *ngIf="landmark.invalid && (landmark.dirty || landmark.touched)" class="error-block">Please
+                        enter Landmark
+                    </span>
+                    <button type="button" style="margin-top: 10px;" class="btn btn-primary btn-large w-100"
+                        (click)="selectTab(1)">Back</button>
+                    <button type="button" [disabled]="address.invalid" style="margin-top: 10px;"
+                        class="btn btn-primary btn-large w-100">Next</button>
+                </div>
+
+                <!-- 4th -->
+                <div class="tab-pane fade" id="nav-OtherDetails" formGroupName="otherDetails" role="tabpanel"
+                    aria-labelledby="nav-OtherDetails-tab">
+                    <div class="form-group col-12">
+                        <p>Ready to move</p>
+                        <div class="btn-group" btnRadioGroup formControlName="rtm" required>
+                            <label class="btn btn-outline-primary" tabindex="0" style="margin-right: 5px;" btnRadio=1
+                                role="button" name="rtm">Yes</label>
+                            <label class="btn btn-outline-primary" btnRadio=2 role="button" name="rtm">No</label>
+                        </div>
+                        <span *ngIf="rtm.invalid && (rtm.dirty || rtm.touched)" class="error-block">Please enter floor
+                            number
+                        </span>
+                    </div>
+                    <div class="form-group col-3">
+                        <label>Possession/Avaialble From</label>
+                        <input type="text" placeholder="Datepicker" formControlName="date" class="form-control"
+                            bsDatepicker
+                            [bsConfig]="{containerClass: 'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD'}">
+                    </div>
+                    <span *ngIf="date.invalid && (date.dirty || date.touched)" class="error-block">Please enter floor
+                        number
+                    </span>
+                    <div class="form-group col-12">
+                        <label>Age of Property</label>
+                        <input type="text" formControlName="ageOfProp" class="form-control">
+                    </div>
+                    <span *ngIf="ageOfProp.invalid && (ageOfProp.dirty || ageOfProp.touched)" class="error-block">Please
+                        enter floor
+                        number
+                    </span>
+                    <div class="form-group col-12">
+                        <p>Gated Community</p>
+                        <div class="btn-group" btnRadioGroup formControlName="gated">
+                            <label class="btn btn-outline-primary" tabindex="0" style="margin-right: 5px;" btnRadio=1
+                                role="button" name="gated">Yes</label>
+                            <label class="btn btn-outline-primary" btnRadio=2 role="button" name="gated">No</label>
+                        </div>
+                        <span *ngIf="gated.invalid && (gated.dirty || gated.touched)" class="error-block">Please
+                            enterGated Community
+                        </span>
+                    </div>
+
+                    <div class="form-group col-12">
+                        <p>Main Entrance</p>
+                        <div class="btn-group" btnRadioGroup formControlName="entrance">
+                            <label class="btn btn-outline-primary" style="margin-right: 5px;" btnRadio=1 role="button"
+                                name="gated">East</label>
+                            <label class="btn btn-outline-primary" style="margin-right: 5px;" btnRadio=2 role="button"
+                                name="gated">West</label>
+                            <label class="btn btn-outline-primary" style="margin-right: 5px;" btnRadio=3 role="button"
+                                name="gated">North</label>
+                            <label class="btn btn-outline-primary" btnRadio=4 role="button" name="gated">South</label>
+                        </div>
+                        <span *ngIf="entrance.invalid && (entrance.dirty || entrance.touched)"
+                            class="error-block">Please select entrance
+                        </span>
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label>Description</label>
+                        <textarea type="text" formControlName="desc" class="form-control" rows="6"></textarea>
+                    </div>
+                    <button type="button" style="margin-top: 10px;"
+                        class="btn btn-primary btn-large w-100">Back</button>
+                    <button type="button" [disabled]="otherDetails.invalid" style="margin-top: 10px;"
+                        class="btn btn-primary btn-large w-100">Next</button>
+                </div>
+
+                <!-- 5th -->
+                <div class="tab-pane fade" id="nav-Photos" formGroupName="photos" role="tabpanel"
+                    aria-labelledby="nav-Photos-tab">
+                    <div class="form-group col-12">
+                        <div class="photo-control">
+                            <button class="mt-5" type="button">Upload</button> <br>
+                            This is under construction
+                        </div>
+                        <span *ngIf="photos.invalid && (photos.dirty || photos.touched)" class="error-block">Please
+                            enter
+                            floor
+                            number
+                        </span>
+                    </div>
+                    <div class="form-group col-12" style="margin-top: 15px;">
+                        <button type="submit" class="btn btn-primary" style="margin-right: 10px;">Save</button>
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                    </div>
+                    <div class="form-group col-12 mt-2">
+                        <button type="button" class="btn btn-primary w-100" (click)="selectTab(3)">Back</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
