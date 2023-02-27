@@ -2,10 +2,10 @@
     <div class="card-header">Add New Property</div>
     <div class="card-body">
 
-        <form (ngSubmit)='onSubmit()' [formGroup]="addPropertyForm">
+        <form (ngSubmit)='onSubmit()' name="formData" [formGroup]="addPropertyForm">
             <!-- Heading -->
             <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <div class="nav nav-tabs #" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-BasicInfo-tab" data-bs-toggle="tab"
                         data-bs-target="#nav-BasicInfo" type="button" role="tab" aria-controls="nav-BasicInfo"
                         aria-selected="true">Basic Info</button>
@@ -84,8 +84,9 @@
                     <span *ngIf="city.invalid && (city.dirty || city.touched)" class="error-block">Please
                         enter city
                     </span>
-                    <button type="button" data-bs-toggle="tab" data-bs-target="#nav-PricingArea"
-                        style="margin-top: 10px;" class="btn btn-primary btn-large w-100">Next</button>
+
+                    <!-- <button type="button" data-bs-toggle="tab" data-bs-target="#nav-PricingArea"
+                        style="margin-top: 10px;" class="btn btn-primary btn-large w-100 btn-next">Next</button> -->
                     <!-- [disabled]="basicInfo.invalid" -->
                 </div>
 
@@ -127,10 +128,10 @@
                     <span *ngIf="carpetArea.invalid && (carpetArea.dirty || carpetArea.touched)"
                         class="error-block">Please enter Carpet Area(in Sqr Feet)
                     </span>
-                    <button type="button" style="margin-top: 10px;"
+                    <!-- <button type="button" style="margin-top: 10px;"
                         class="btn btn-primary btn-large w-100">Back</button>
                     <button type="button" style="margin-top: 10px;"
-                        class="btn btn-primary btn-large w-100">Next</button>
+                        class="btn btn-primary btn-large w-100">Next</button> -->
                     <!-- [disabled]="pricingArea.invalid"  -->
                 </div>
 
@@ -168,10 +169,10 @@
                     <span *ngIf="landmark.invalid && (landmark.dirty || landmark.touched)" class="error-block">Please
                         enter Landmark
                     </span>
-                    <button type="button" style="margin-top: 10px;" class="btn btn-primary btn-large w-100"
+                    <!-- <button type="button" style="margin-top: 10px;" class="btn btn-primary btn-large w-100"
                         (click)="selectTab(1)">Back</button>
                     <button type="button" [disabled]="address.invalid" style="margin-top: 10px;"
-                        class="btn btn-primary btn-large w-100">Next</button>
+                        class="btn btn-primary btn-large w-100">Next</button> -->
                 </div>
 
                 <!-- 4th -->
@@ -237,10 +238,10 @@
                         <label>Description</label>
                         <textarea type="text" formControlName="desc" class="form-control" rows="6"></textarea>
                     </div>
-                    <button type="button" style="margin-top: 10px;"
+                    <!-- <button type="button" style="margin-top: 10px;"
                         class="btn btn-primary btn-large w-100">Back</button>
                     <button type="button" [disabled]="otherDetails.invalid" style="margin-top: 10px;"
-                        class="btn btn-primary btn-large w-100">Next</button>
+                        class="btn btn-primary btn-large w-100">Next</button> -->
                 </div>
 
                 <!-- 5th -->
@@ -251,18 +252,10 @@
                             <button class="mt-5" type="button">Upload</button> <br>
                             This is under construction
                         </div>
-                        <span *ngIf="photos.invalid && (photos.dirty || photos.touched)" class="error-block">Please
-                            enter
-                            floor
-                            number
-                        </span>
                     </div>
                     <div class="form-group col-12" style="margin-top: 15px;">
-                        <button type="submit" class="btn btn-primary" style="margin-right: 10px;">Save</button>
+                        <button type="submit" [disabled]="basicInfo.invalid || pricingArea.invalid || address.invalid || otherDetails.invalid" class="btn btn-primary" style="margin-right: 10px;">Save</button>
                         <button type="reset" class="btn btn-primary">Reset</button>
-                    </div>
-                    <div class="form-group col-12 mt-2">
-                        <button type="button" class="btn btn-primary w-100" (click)="selectTab(3)">Back</button>
                     </div>
                 </div>
             </div>

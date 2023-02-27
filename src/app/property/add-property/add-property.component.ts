@@ -60,7 +60,7 @@ export class AddPropertyComponent implements OnInit {
         desc: [null, Validators.required]
       }),
       photos: this.fb.group({
-        photo: [null, Validators.required]
+        photo: [null, '']
       })
     })
   }
