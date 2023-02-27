@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { log } from 'console';
 import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/Services/housing.service';
@@ -12,6 +13,8 @@ import { HousingService } from 'src/app/Services/housing.service';
 export class PropertyDetailComponent implements OnInit {
   public propertyId: number
   property = new Property()
+  galleryOptions: NgxGalleryOptions[];
+  galleryImages: NgxGalleryImage[];
   constructor(private route: ActivatedRoute, private router: Router, private housingService: HousingService) { }
 
   ngOnInit() {
@@ -33,5 +36,43 @@ export class PropertyDetailComponent implements OnInit {
     //     )
     //   }
     // )
+
+    this.galleryOptions = [
+      {
+        width: '100%',
+        height: '500px',
+        thumbnailsColumns: 5,
+        imageAnimation: NgxGalleryAnimation.Slide
+      },
+    ];
+
+
+    this.galleryImages = [
+      {
+        small: 'assets/Images/Jashn-living1.jpg',
+        medium: 'assets/Images/Jashn-living1.jpg',
+        big: 'assets/Images/Jashn-living1.jpg'
+      },
+      {
+        small: 'assets/Images/Jashn-bedroom1.jpg',
+        medium: 'assets/Images/Jashn-bedroom1.jpg',
+        big: 'assets/Images/Jashn-bedroom1.jpg'
+      },
+      {
+        small: 'assets/Images/Jashn-kitchen1.jpg',
+        medium: 'assets/Images/Jashn-kitchen1.jpg',
+        big: 'assets/Images/Jashn-kitchen1.jpg'
+      },
+      {
+        small: 'assets/Images/Jashn-dinning2.jpg',
+        medium: 'assets/Images/Jashn-dinning2.jpg',
+        big: 'assets/Images/Jashn-dinning2.jpg'
+      },
+      {
+        small: 'assets/Images/Jashn-balcony.jpg',
+        medium: 'assets/Images/Jashn-balcony.jpg',
+        big: 'assets/Images/Jashn-balcony.jpg'
+      },
+    ];
   }
 }

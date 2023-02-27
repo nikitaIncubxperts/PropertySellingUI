@@ -15,7 +15,7 @@ export class HousingService {
   GetProperty(id: number) {
     return this.getAllProperties().pipe(
       map(propertiesArray => {
-        throw new Error('some error occured');
+        //throw new Error('some error occured');
         console.log("popyy: ",propertiesArray.find(p => p.id === id) as unknown as Property)
         return propertiesArray.find(p => p.id === id) as unknown as Property
       })

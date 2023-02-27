@@ -13,6 +13,11 @@ import { IProperty } from '../property-list/IProperty.interface';
 export class PropertyListComponent implements OnInit {
   SellRent = 1;
   properties: Property[];
+  today = new Date();
+  city = ''
+  searchCity = '';
+  sortByParam = ''
+  sortDirection = 'asc'
 
   constructor(private route: ActivatedRoute, private housingService: HousingService) { }
 
@@ -21,14 +26,23 @@ export class PropertyListComponent implements OnInit {
       this.SellRent = 2
     }
     this.housingService.getAllProperties(this.SellRent).subscribe(
-      data => {   
+      data => {
         this.properties = data
-
-        // const newProperty = JSON.parse(localStorage.getItem('newProp') as string);
-        // if (newProperty.sellRent==this.SellRent) {
-        //   this.properties = [newProperty, ...this.properties]
-        // }
       }
     )
+  }
+  onCityFilter() {
+    this.searchCity = this.city
+  }
+  onCityFilterClear() {
+    this.searchCity = ''
+    this.city = ''
+  }
+  onSortDirection(){
+    if(this.sortDirection === 'desc'){
+      this.sortDirection = 'asc'
+    }else{
+      this.sortDirection = 'desc'
+    }
   }
 }

@@ -22,6 +22,9 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PropertyDetailResolverService } from './property/property-detail/property-detail-resolver.service';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { FiterPipe } from './Pipes/fiter.pipe';
+import { SortPipe } from './Pipes/sort.pipe';
 
 
 const appRouts: Routes = [
@@ -44,7 +47,9 @@ const appRouts: Routes = [
     PropertyDetailComponent,
     PageNotFoundComponent,
     UserRegisterComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    FiterPipe,
+    SortPipe
   ],
   providers: [
     HousingService,
@@ -66,6 +71,7 @@ const appRouts: Routes = [
     TabsModule.forRoot(),
     ButtonsModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    NgxGalleryModule
   ],
 })
 export class AppModule { }
