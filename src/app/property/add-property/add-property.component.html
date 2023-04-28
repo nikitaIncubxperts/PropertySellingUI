@@ -79,7 +79,13 @@
                     </span>
                     <div class="form-group col-12">
                         <label for="type">City</label>
-                        <input type="text" class="form-control" formControlName="city" tabindex="0" required>
+                        <select class="form-control" formControlName="city">
+                            <option value="">--select city--</option>
+                            <option *ngFor="let city of cityList" value={{city.id}}>
+                                {{city.name}}
+                            </option>
+                        </select>
+                        <!-- <input type="text" class="form-control" formControlName="city" tabindex="0" required> -->
                     </div>
                     <span *ngIf="city.invalid && (city.dirty || city.touched)" class="error-block">Please
                         enter city
@@ -254,7 +260,9 @@
                         </div>
                     </div>
                     <div class="form-group col-12" style="margin-top: 15px;">
-                        <button type="submit" [disabled]="basicInfo.invalid || pricingArea.invalid || address.invalid || otherDetails.invalid" class="btn btn-primary" style="margin-right: 10px;">Save</button>
+                        <button type="submit"
+                            [disabled]="basicInfo.invalid || pricingArea.invalid || address.invalid || otherDetails.invalid"
+                            class="btn btn-primary" style="margin-right: 10px;">Save</button>
                         <button type="reset" class="btn btn-primary">Reset</button>
                     </div>
                 </div>

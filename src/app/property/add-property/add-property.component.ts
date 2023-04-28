@@ -20,12 +20,16 @@ export class AddPropertyComponent implements OnInit {
 
   PropertyType: Array<string> = ['House', 'Apartment', 'Duplex', 'Row-House', 'Villa']
   FurnishedType: Array<string> = ['Fully', 'Semi', 'Unfurnished']
+  cityList : any[];
 
   constructor(private fb: FormBuilder, private router: Router, private housingService: HousingService) {
   }
 
   ngOnInit() {
     this.CreateAddPropertyForm()
+    this.housingService.getAllCities().subscribe(data => {
+      this.cityList = data;
+    });
   }
 
   CreateAddPropertyForm() {
@@ -65,7 +69,7 @@ export class AddPropertyComponent implements OnInit {
     })
   }
 
-  
+
   onBack() {
     this.router.navigate(['/'])
   }
@@ -75,9 +79,9 @@ export class AddPropertyComponent implements OnInit {
     this.housingService.AddProperty(this.property)
     console.log(this.addPropertyForm)
     alertify.success("New property added..")
-    if(this.sellRent.value==2){
+    if (this.sellRent.value == 2) {
       this.router.navigate(['/rent-property'])
-    }else{
+    } else {
       this.router.navigate(['/'])
     }
   }
@@ -86,7 +90,7 @@ export class AddPropertyComponent implements OnInit {
     //this.formTabs.tabs[tabId].active = true;
   }
 
-  mapProperty(): void{
+  mapProperty(): void {
     this.property.id = this.housingService.NewPropId();
     this.property.sellRent = +this.sellRent.value;
     this.property.bhk = this.bhk.value;
